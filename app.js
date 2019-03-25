@@ -13,6 +13,7 @@ const client = new elasticsearch.Client({
 
 const uuidv4 = require('uuid/v4');
 
+const geo = require('./geo.json')
 
 client.indices.delete({
     index: 'disney',
@@ -57,12 +58,18 @@ function getTime(){
     let dateTime = new Date();
     let changeDate = Math.floor(dateTime.getTime()/(1000*60*10))*(1000*60*10);
     let formate = dateFormat(new Date(changeDate),"yyyy-mm-dd HH:MM:ss");
+	let position = "";
+	if(ride.name in geo){
+		position = geo[ride.name];
+	}
+	
     disneyMagicKingdom.GetWaitTimes().then(function(rides) {
         for(var i=0, ride; ride=rides[i++];) {
             let result = {
                 "attraction":ride.name,
                 "attente":ride.waitTime,
-                "dateTime":formate
+                "dateTime":formate,
+				"position":position
             };
             console.log(result);
             addToES(result);
