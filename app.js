@@ -60,11 +60,12 @@ function getTime(){
     disneyMagicKingdom.GetWaitTimes().then(function(rides) {
 		console.log('new adding ------- '+rides.length)
 		
-		let attraction = ride.name.replace("NOUVEAU ! ","").replace("™","").replace("®","")
+		
         for(var i=0, ride; ride=rides[i++];) {
-			let position = "";
-			if(ride.name in geo){
-				position = geo[ride.name];
+			let position = "0,0";
+			let attraction = ride.name.replace("NOUVEAU ! ","").replace("™","").replace("®","").replace("NOUVEAU ","").replace("'NOUVEAU !'","")
+			if(attraction in geo){
+				position = geo[attraction];
 			}
             let result = {
                 "attraction":attraction,
