@@ -7,9 +7,7 @@ const elasticsearch = require('elasticsearch');
 
 const dateFormat = require('dateformat');
 
-const client = new elasticsearch.Client({
-    host: 'https://search-data-bison-mn7mmzhqmda53plwq7jolphcqu.eu-west-3.es.amazonaws.com'
-});
+const client = new elasticsearch.Client();
 
 const uuidv4 = require('uuid/v4');
 
