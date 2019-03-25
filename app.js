@@ -70,7 +70,7 @@ function getTime(){
         
         for(var i=0, ride; ride=rides[i++];) {
             let position = "0,0";
-            let attraction = ride.name.replace("NOUVEAU ! ","").replace("™","").replace("®","").replace("NOUVEAU ","").replace("'NOUVEAU' ","")
+            let attraction = ride.name.replace("NOUVEAU ! ","").replace("™","").replace("®","").replace("NOUVEAU ","").replace("'NOUVEAU' ","").replace("’","'").replace(" – "," - ");
             if(attraction in geo){
                 position = geo[attraction];
             }else{
