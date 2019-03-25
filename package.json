@@ -1,0 +1,19 @@
+{
+  "name": "themeparks",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "cache-manager-fs-binary": "^1.0.4",
+    "dateformat": "^3.0.3",
+    "elasticsearch": "^15.4.1",
+    "themeparks": "^4.7.11",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
