@@ -11,8 +11,6 @@ const client = new elasticsearch.Client();
 
 const uuidv4 = require('uuid/v4');
 
-const utf8 = require('utf8');
-
 var fs = require("fs");
 
 var geo = fs.readFileSync('./geo.json', {encoding: "binary"});
