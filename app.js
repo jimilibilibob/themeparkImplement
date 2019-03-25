@@ -58,13 +58,16 @@ function getTime(){
     let formate = dateFormat(new Date(changeDate),"yyyy-mm-dd HH:MM:ss");
 
     disneyMagicKingdom.GetWaitTimes().then(function(rides) {
+		console.log('new adding ------- '+rides.length)
+		
+		let attraction = ride.name.replace("NOUVEAU ! ","").replace("™","").replace("®","")
         for(var i=0, ride; ride=rides[i++];) {
 			let position = "";
 			if(ride.name in geo){
 				position = geo[ride.name];
 			}
             let result = {
-                "attraction":ride.name,
+                "attraction":attraction,
                 "attente":ride.waitTime,
                 "dateTime":formate,
 				"position":position
