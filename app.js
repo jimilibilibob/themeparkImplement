@@ -82,7 +82,7 @@ function getTime(){
                 "dateTime":formate,
                 "position":position
             };
-            console.log(result);
+            console.log(i);
             addToES(result);
         }
 
