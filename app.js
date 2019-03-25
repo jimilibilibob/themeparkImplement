@@ -11,7 +11,16 @@ const client = new elasticsearch.Client();
 
 const uuidv4 = require('uuid/v4');
 
-const geo = require('./geo.json')
+const utf8 = require('utf8');
+
+var fs = require("fs");
+
+var geo = fs.readFileSync('./geo.json', {encoding: "binary"});
+
+var geo = JSON.parse(geo)
+
+console.log(geo)
+
 
 client.indices.delete({
     index: 'disney',
@@ -58,20 +67,22 @@ function getTime(){
     let formate = dateFormat(new Date(changeDate),"yyyy-mm-dd HH:MM:ss");
 
     disneyMagicKingdom.GetWaitTimes().then(function(rides) {
-		console.log('new adding ------- '+rides.length)
-		
-		
+        console.log('new adding ------- '+rides.length)
+        
+        
         for(var i=0, ride; ride=rides[i++];) {
-			let position = "0,0";
-			let attraction = ride.name.replace("NOUVEAU ! ","").replace("™","").replace("®","").replace("NOUVEAU ","").replace("'NOUVEAU !'","")
-			if(attraction in geo){
-				position = geo[attraction];
-			}
+            let position = "0,0";
+            let attraction = ride.name.replace("NOUVEAU ! ","").replace("™","").replace("®","").replace("NOUVEAU ","").replace("'NOUVEAU' ","")
+            if(attraction in geo){
+                position = geo[attraction];
+            }else{
+                console.log(attraction)
+            }
             let result = {
                 "attraction":attraction,
                 "attente":ride.waitTime,
                 "dateTime":formate,
-				"position":position
+                "position":position
             };
             console.log(result);
             addToES(result);
